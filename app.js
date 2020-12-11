@@ -7,6 +7,7 @@ const fs = require("fs");
 
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
+var employeeData = []
 
 const render = require("./lib/htmlRenderer");
 
@@ -20,10 +21,58 @@ function Init() {
       choices: ["addManager", "addEngineer", "addIntern", "exitApplication"]
     }
   )
-  .then (function (results) {
-    console.log(results)
+    .then(function (results) {
+      console.log(results)
+      switch (results.userChoices) {
+        case "addManager":
+          addManager()
+          break
+        case "addEngineer
+          addEngineer()
+          break
+        case "addIntern":
+          addIntern()
+          break
+        case "exitApplication":
+          exitApplication()
+          break
+      }
+
+    })
+}
+
+function addManager() {
+  console.log("Add Manager Details")
+  console.log("====================")
+  inquirer.prompt([
+    {
+      type: "input",
+      message: "Enter employee Name", 
+      name:"name"
+    },
+    {
+      type: "input",
+      message: "Enter employee ID", 
+      name:"id"
+    },
+    {
+      type: "input",
+      message: "Enter employee Email", 
+      name:"email"
+    },
+    {
+      type: "input",
+      message: "Enter employee Office eNumber", 
+      name:"officeNumber"
+    }
+  ])
+  .then(function(results){
+    var myTeamManager = new Manager(results.name, results.id, results.email, results,offNumber)
+    employeeData.push(myTeamManager)
+    Init()
   })
 }
+
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
