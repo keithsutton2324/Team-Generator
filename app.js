@@ -27,7 +27,7 @@ function Init() {
         case "addManager":
           addManager()
           break
-        case "addEngineer
+        case "addEngineer":
           addEngineer()
           break
         case "addIntern":
@@ -47,30 +47,107 @@ function addManager() {
   inquirer.prompt([
     {
       type: "input",
-      message: "Enter employee Name", 
+      message: "Enter Employee Name", 
       name:"name"
     },
     {
       type: "input",
-      message: "Enter employee ID", 
+      message: "Enter Employee ID", 
       name:"id"
     },
     {
       type: "input",
-      message: "Enter employee Email", 
+      message: "Enter Employee Email", 
       name:"email"
     },
     {
       type: "input",
-      message: "Enter employee Office eNumber", 
+      message: "Enter Employee Office eNumber", 
       name:"officeNumber"
     }
   ])
   .then(function(results){
-    var myTeamManager = new Manager(results.name, results.id, results.email, results,offNumber)
+    var myTeamManager = new Manager(results.name, results.id, results.email, results.offNumber)
     employeeData.push(myTeamManager)
     Init()
   })
+}
+
+function addEngineer() {
+  console.log("Add Engineer Details")
+  console.log("====================")
+  inquirer.prompt([
+    {
+      type: "input",
+      message: "Enter Employee Name", 
+      name:"name"
+    },
+    {
+      type: "input",
+      message: "Enter Employee ID", 
+      name:"id"
+    },
+    {
+      type: "input",
+      message: "Enter Employee Email", 
+      name:"email"
+    },
+    {
+      type: "input",
+      message: "Enter Employee GitHub URL", 
+      name:"github"
+    }
+  ])
+  .then(function(results){
+    var myTeamEngineer = new Engineer(results.name, results.id, results.email, results.github)
+    employeeData.push(myTeamEngineer)
+    Init()
+  })
+}
+
+function addIntern() {
+  console.log("Add Intern Details")
+  console.log("====================")
+  inquirer.prompt([
+    {
+      type: "input",
+      message: "Enter Employee Name", 
+      name:"name"
+    },
+    {
+      type: "input",
+      message: "Enter Employee ID", 
+      name:"id"
+    },
+    {
+      type: "input",
+      message: "Enter Employee Email", 
+      name:"email"
+    },
+    {
+      type: "input",
+      message: "Enter Employee School", 
+      name:"school"
+    }
+  ])
+  .then(function(results){
+    var myTeamIntern = new Intern(results.name, results.id, results.email, results.school)
+    employeeData.push(myTeamIntern)
+    Init()
+  })
+}
+/*
+function exitApplication() {
+  console.log("Exit Application")
+  console.log("====================")
+  .then(function(results){
+    exit()
+  })
+}
+*/
+function exitApplication() {
+  console.log("Exit Application")
+  console.log("====================")
 }
 
 
