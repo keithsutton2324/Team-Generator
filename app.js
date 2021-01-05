@@ -34,10 +34,11 @@ function Init() {
           addIntern()
           break
         case "exitApplication":
+          buildTeam()
           exitApplication()
           break
       }
-
+      buildTeam()
     })
 }
 
@@ -136,15 +137,14 @@ function addIntern() {
     Init()
   })
 }
-/*
-function exitApplication() {
-  console.log("Exit Application")
-  console.log("====================")
-  .then(function(results){
-    exit()
-  })
+function buildTeam() {
+  // Create the output directory if the output path doesn't exist
+  if (!fs.existsSync(OUTPUT_DIR)) {
+    fs.mkdirSync(OUTPUT_DIR)
+  }
+  fs.writeFileSync(outputPath, render(employeeData), "utf-8");
 }
-*/
+
 function exitApplication() {
   console.log("Exit Application")
   console.log("====================")
